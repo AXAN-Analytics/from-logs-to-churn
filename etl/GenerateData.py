@@ -207,7 +207,7 @@ if __name__ == "__main__":
     data_generator.log__event_generated_info(users,events)
 
     data_generator.pull_data_to_DB(users,events)
-    data_generator.save_data(users,events)
-    data_generator.log__saved_data(users,events)
+    #data_generator.save_data(users,events)
+    #data_generator.log__saved_data(users,events)
 
     

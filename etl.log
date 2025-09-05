@@ -1,12 +1,104 @@
-2025-09-04 18:39:13,970 [INFO] __main__ - Starting data generation: N_USERS=5000, window=2024-09-04 to 2025-09-04
-2025-09-04 18:39:14,000 [INFO] __main__ - Generated 5000 users across 10 countries
-2025-09-04 18:39:14,000 [INFO] __main__ - Generating events for 5000 users...
-2025-09-04 18:39:24,212 [INFO] __main__ - 1000 users analysed :193.37 events per user in average
-2025-09-04 18:39:33,976 [INFO] __main__ - 2000 users analysed :190.14 events per user in average
-2025-09-04 18:39:48,593 [INFO] __main__ - 3000 users analysed :192.67 events per user in average
-2025-09-04 18:39:59,727 [INFO] __main__ - 4000 users analysed :193.57 events per user in average
-2025-09-04 18:40:10,555 [INFO] __main__ - Generated 5000 events total
-2025-09-04 18:40:10,555 [INFO] __main__ - Saving users.csv (960401 rows) and events.csv (5000 rows) into data/raw/
-2025-09-04 18:42:01,103 [INFO] __main__ - Data sent to DB on OVH Cloud (location Gravelines)
-2025-09-04 18:42:04,692 [INFO] __main__ - Data stored locally
-2025-09-04 18:42:04,699 [INFO] __main__ - Files: data/raw/users.csv, data/raw/events.csv
+2025-09-05 16:29:50,682 [INFO] __main__ - Starting data generation: N_USERS=100000, window=2024-09-05 to 2025-09-05
+2025-09-05 16:29:52,201 [INFO] __main__ - Generated 100000 users across 10 countries
+2025-09-05 16:29:52,201 [INFO] __main__ - Generating events for 100000 users...
+2025-09-05 16:30:06,983 [INFO] __main__ - 1000 users analysed :187.39 events per user in average
+2025-09-05 16:30:21,335 [INFO] __main__ - 2000 users analysed :187.73 events per user in average
+2025-09-05 16:30:46,011 [INFO] __main__ - 3000 users analysed :188.4 events per user in average
+2025-09-05 16:31:02,143 [INFO] __main__ - 4000 users analysed :191.43 events per user in average
+2025-09-05 16:31:16,262 [INFO] __main__ - 5000 users analysed :189.96 events per user in average
+2025-09-05 16:31:40,243 [INFO] __main__ - 6000 users analysed :192.06 events per user in average
+2025-09-05 16:31:54,981 [INFO] __main__ - 7000 users analysed :192.19 events per user in average
+2025-09-05 16:32:14,147 [INFO] __main__ - 8000 users analysed :191.24 events per user in average
+2025-09-05 16:32:43,998 [INFO] __main__ - 9000 users analysed :192.37 events per user in average
+2025-09-05 16:32:59,323 [INFO] __main__ - 10000 users analysed :192.34 events per user in average
+2025-09-05 16:33:13,938 [INFO] __main__ - 11000 users analysed :192.63 events per user in average
+2025-09-05 16:33:33,544 [INFO] __main__ - 12000 users analysed :192.6 events per user in average
+2025-09-05 16:34:04,434 [INFO] __main__ - 13000 users analysed :191.86 events per user in average
+2025-09-05 16:34:20,201 [INFO] __main__ - 14000 users analysed :192.28 events per user in average
+2025-09-05 16:34:44,679 [INFO] __main__ - 15000 users analysed :192.63 events per user in average
+2025-09-05 16:34:59,542 [INFO] __main__ - 16000 users analysed :192.59 events per user in average
+2025-09-05 16:35:13,834 [INFO] __main__ - 17000 users analysed :192.02 events per user in average
+2025-09-05 16:35:41,131 [INFO] __main__ - 18000 users analysed :191.78 events per user in average
+2025-09-05 16:35:56,525 [INFO] __main__ - 19000 users analysed :191.49 events per user in average
+2025-09-05 16:36:11,975 [INFO] __main__ - 20000 users analysed :191.98 events per user in average
+2025-09-05 16:36:30,313 [INFO] __main__ - 21000 users analysed :192.25 events per user in average
+2025-09-05 16:36:52,718 [INFO] __main__ - 22000 users analysed :192.05 events per user in average
+2025-09-05 16:37:19,579 [INFO] __main__ - 23000 users analysed :191.9 events per user in average
+2025-09-05 16:37:45,256 [INFO] __main__ - 24000 users analysed :191.96 events per user in average
+2025-09-05 16:37:59,870 [INFO] __main__ - 25000 users analysed :192.09 events per user in average
+2025-09-05 16:38:14,576 [INFO] __main__ - 26000 users analysed :191.9 events per user in average
+2025-09-05 16:38:42,899 [INFO] __main__ - 27000 users analysed :191.64 events per user in average
+2025-09-05 16:39:07,347 [INFO] __main__ - 28000 users analysed :191.69 events per user in average
+2025-09-05 16:39:24,532 [INFO] __main__ - 29000 users analysed :191.91 events per user in average
+2025-09-05 16:39:46,815 [INFO] __main__ - 30000 users analysed :191.78 events per user in average
+2025-09-05 16:40:00,995 [INFO] __main__ - 31000 users analysed :191.69 events per user in average
+2025-09-05 16:40:17,956 [INFO] __main__ - 32000 users analysed :191.75 events per user in average
+2025-09-05 16:40:40,909 [INFO] __main__ - 33000 users analysed :191.88 events per user in average
+2025-09-05 16:40:55,225 [INFO] __main__ - 34000 users analysed :191.8 events per user in average
+2025-09-05 16:41:09,754 [INFO] __main__ - 35000 users analysed :191.81 events per user in average
+2025-09-05 16:41:24,798 [INFO] __main__ - 36000 users analysed :191.95 events per user in average
+2025-09-05 16:41:48,888 [INFO] __main__ - 37000 users analysed :191.87 events per user in average
+2025-09-05 16:42:03,708 [INFO] __main__ - 38000 users analysed :191.93 events per user in average
+2025-09-05 16:42:18,610 [INFO] __main__ - 39000 users analysed :191.9 events per user in average
+2025-09-05 16:42:41,597 [INFO] __main__ - 40000 users analysed :191.93 events per user in average
+2025-09-05 16:42:56,242 [INFO] __main__ - 41000 users analysed :191.78 events per user in average
+2025-09-05 16:43:20,555 [INFO] __main__ - 42000 users analysed :191.85 events per user in average
+2025-09-05 16:44:01,567 [INFO] __main__ - 43000 users analysed :191.8 events per user in average
+2025-09-05 17:20:58,898 [INFO] __main__ - 44000 users analysed :191.74 events per user in average
+2025-09-05 17:50:08,211 [INFO] __main__ - 45000 users analysed :191.75 events per user in average
+2025-09-05 17:50:15,639 [INFO] __main__ - 46000 users analysed :191.78 events per user in average
+2025-09-05 17:50:23,705 [INFO] __main__ - 47000 users analysed :191.73 events per user in average
+2025-09-05 17:50:38,313 [INFO] __main__ - 48000 users analysed :191.54 events per user in average
+2025-09-05 17:50:48,807 [INFO] __main__ - 49000 users analysed :191.58 events per user in average
+2025-09-05 17:51:01,101 [INFO] __main__ - 50000 users analysed :191.73 events per user in average
+2025-09-05 17:51:14,071 [INFO] __main__ - 51000 users analysed :191.76 events per user in average
+2025-09-05 17:51:23,487 [INFO] __main__ - 52000 users analysed :191.76 events per user in average
+2025-09-05 17:51:37,686 [INFO] __main__ - 53000 users analysed :191.93 events per user in average
+2025-09-05 17:51:51,526 [INFO] __main__ - 54000 users analysed :192.03 events per user in average
+2025-09-05 17:52:06,019 [INFO] __main__ - 55000 users analysed :192.0 events per user in average
+2025-09-05 17:52:18,536 [INFO] __main__ - 56000 users analysed :191.98 events per user in average
+2025-09-05 17:52:33,177 [INFO] __main__ - 57000 users analysed :191.95 events per user in average
+2025-09-05 17:52:48,861 [INFO] __main__ - 58000 users analysed :191.95 events per user in average
+2025-09-05 17:53:02,601 [INFO] __main__ - 59000 users analysed :191.84 events per user in average
+2025-09-05 17:53:20,188 [INFO] __main__ - 60000 users analysed :191.79 events per user in average
+2025-09-05 17:53:37,713 [INFO] __main__ - 61000 users analysed :191.81 events per user in average
+2025-09-05 17:53:56,337 [INFO] __main__ - 62000 users analysed :191.76 events per user in average
+2025-09-05 17:54:09,357 [INFO] __main__ - 63000 users analysed :191.78 events per user in average
+2025-09-05 17:54:23,196 [INFO] __main__ - 64000 users analysed :191.73 events per user in average
+2025-09-05 17:55:19,331 [INFO] __main__ - 65000 users analysed :191.83 events per user in average
+2025-09-05 17:56:34,015 [INFO] __main__ - 66000 users analysed :191.77 events per user in average
+2025-09-05 17:56:50,462 [INFO] __main__ - 67000 users analysed :191.71 events per user in average
+2025-09-05 17:57:06,248 [INFO] __main__ - 68000 users analysed :191.72 events per user in average
+2025-09-05 17:57:22,464 [INFO] __main__ - 69000 users analysed :191.69 events per user in average
+2025-09-05 17:57:46,082 [INFO] __main__ - 70000 users analysed :191.77 events per user in average
+2025-09-05 17:58:03,279 [INFO] __main__ - 71000 users analysed :191.78 events per user in average
+2025-09-05 17:58:23,424 [INFO] __main__ - 72000 users analysed :191.84 events per user in average
+2025-09-05 17:58:47,083 [INFO] __main__ - 73000 users analysed :191.88 events per user in average
+2025-09-05 17:59:07,899 [INFO] __main__ - 74000 users analysed :191.83 events per user in average
+2025-09-05 17:59:22,657 [INFO] __main__ - 75000 users analysed :191.85 events per user in average
+2025-09-05 17:59:41,024 [INFO] __main__ - 76000 users analysed :191.71 events per user in average
+2025-09-05 17:59:56,186 [INFO] __main__ - 77000 users analysed :191.68 events per user in average
+2025-09-05 18:00:19,735 [INFO] __main__ - 78000 users analysed :191.6 events per user in average
+2025-09-05 18:00:44,469 [INFO] __main__ - 79000 users analysed :191.63 events per user in average
+2025-09-05 18:01:00,117 [INFO] __main__ - 80000 users analysed :191.6 events per user in average
+2025-09-05 18:01:25,256 [INFO] __main__ - 81000 users analysed :191.64 events per user in average
+2025-09-05 18:02:07,661 [INFO] __main__ - 82000 users analysed :191.68 events per user in average
+2025-09-05 18:02:26,087 [INFO] __main__ - 83000 users analysed :191.65 events per user in average
+2025-09-05 18:02:52,812 [INFO] __main__ - 84000 users analysed :191.64 events per user in average
+2025-09-05 18:03:32,758 [INFO] __main__ - 85000 users analysed :191.67 events per user in average
+2025-09-05 18:03:56,230 [INFO] __main__ - 86000 users analysed :191.67 events per user in average
+2025-09-05 18:04:36,612 [INFO] __main__ - 87000 users analysed :191.6 events per user in average
+2025-09-05 18:04:53,923 [INFO] __main__ - 88000 users analysed :191.6 events per user in average
+2025-09-05 18:05:16,318 [INFO] __main__ - 89000 users analysed :191.54 events per user in average
+2025-09-05 18:05:49,907 [INFO] __main__ - 90000 users analysed :191.49 events per user in average
+2025-09-05 18:06:08,963 [INFO] __main__ - 91000 users analysed :191.44 events per user in average
+2025-09-05 18:06:25,950 [INFO] __main__ - 92000 users analysed :191.52 events per user in average
+2025-09-05 18:06:51,423 [INFO] __main__ - 93000 users analysed :191.45 events per user in average
+2025-09-05 18:07:07,480 [INFO] __main__ - 94000 users analysed :191.44 events per user in average
+2025-09-05 18:07:43,798 [INFO] __main__ - 95000 users analysed :191.49 events per user in average
+2025-09-05 18:08:03,907 [INFO] __main__ - 96000 users analysed :191.45 events per user in average
+2025-09-05 18:08:19,998 [INFO] __main__ - 97000 users analysed :191.44 events per user in average
+2025-09-05 18:08:44,237 [INFO] __main__ - 98000 users analysed :191.43 events per user in average
+2025-09-05 18:09:00,984 [INFO] __main__ - 99000 users analysed :191.45 events per user in average
+2025-09-05 18:10:58,399 [INFO] __main__ - Generated 100000 events total
+2025-09-05 18:10:58,415 [INFO] __main__ - Saving users.csv (19141886 rows) and events.csv (100000 rows) into data/raw/

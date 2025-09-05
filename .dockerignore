@@ -1,0 +1,29 @@
+# VCS / editor
+.git
+.gitignore
+.gitattributes
+.vscode/
+.idea/
+
+# Python caches & build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Notebooks / data
+*.ipynb
+data/
+datasets/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Local config (mount in dev; secret in k8s)
+config/
+.env
