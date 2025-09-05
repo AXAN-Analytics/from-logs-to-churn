@@ -68,7 +68,7 @@ COPY . /app
 # Reads CONFIG_PATH (default: /app/config/postgres.json), connects with SSL,
 # creates tables if missing, upserts a couple of sample rows, and prints event_mix.
 # Keep this tiny and dependency-free.
-RUN <<'PY' bash -lc 'cat > /entrypoint.py'
+RUN <<'PY' bash -lc 'cat > /main.py'
 import json, os, sys, time
 from datetime import datetime, timezone
 import pandas as pd
@@ -153,7 +153,7 @@ try:
 except Exception as e:
     log("error", "etl_failed", error=str(e))
     sys.exit(1)
-'PY'
+PY
 
 # ---- Runtime security defaults ----
 
