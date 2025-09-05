@@ -56,8 +56,10 @@ WORKDIR /app
 ### COPY REQUIREMENTS.TXT INTO FOLDER APP
 ### RUNS PIP TO INSTALL ENVIRONMENT, PUT CACHE INSIDE /root/.cache/pip DURING OPERATION BUT DOES NOT KEEP IT
 COPY requirements.txt /app/requirements.txt
+# TEMP DIAGNOSTIC (more logs)
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --no-cache-dir -r /app/requirements.txt
+    python -m pip install -v --no-cache-dir -r /app/requirements.txt || \
+    (echo '--- pip debug below ---' && python -m pip debug -v && exit 1)
 
 # ---- App code ----
 # Copy your repo into the image; adjust the path if your project root differs.
