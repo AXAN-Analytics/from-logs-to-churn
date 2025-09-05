@@ -1,7 +1,7 @@
 name: build-push
 on:
   push:
-    branches: [ "**" ] ##reintroduce main when merging
+    branches: [ "main" ] 
 
 permissions:
   contents: read
