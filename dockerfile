@@ -58,10 +58,9 @@ WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 # TEMP DIAGNOSTIC (more logs)
 # Show verbose logs; on failure, print pip environment details
+# temporarily, to pinpoint the package
 RUN --mount=type=cache,target=/root/.cache/pip \
-    python -m pip install -U pip && \
-    python -m pip install -v --no-cache-dir -r /app/requirements.txt || \
-    (echo '--- pip debug below ---' && python -m pip debug -v && exit 1)
+    python -m pip install --only-binary=:all: --no-cache-dir -r /app/requirements.txt
 
 # ---- App code ----
 # Copy your repo into the image; adjust the path if your project root differs.
