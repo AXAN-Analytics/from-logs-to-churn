@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: etl-sample
+Version: 0.1.0
+Requires-Dist: pandas==2.2.2
+Requires-Dist: numpy==1.26.4
+Requires-Dist: faker==24.9.0
+Requires-Dist: duckdb
+Requires-Dist: pyarrow
+Requires-Dist: dash
+Provides-Extra: cloud
+Requires-Dist: s3fs; extra == "cloud"
+Dynamic: provides-extra
+Dynamic: requires-dist

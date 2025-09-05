@@ -1,0 +1,12 @@
+2025-09-04 18:39:13,970 [INFO] __main__ - Starting data generation: N_USERS=5000, window=2024-09-04 to 2025-09-04
+2025-09-04 18:39:14,000 [INFO] __main__ - Generated 5000 users across 10 countries
+2025-09-04 18:39:14,000 [INFO] __main__ - Generating events for 5000 users...
+2025-09-04 18:39:24,212 [INFO] __main__ - 1000 users analysed :193.37 events per user in average
+2025-09-04 18:39:33,976 [INFO] __main__ - 2000 users analysed :190.14 events per user in average
+2025-09-04 18:39:48,593 [INFO] __main__ - 3000 users analysed :192.67 events per user in average
+2025-09-04 18:39:59,727 [INFO] __main__ - 4000 users analysed :193.57 events per user in average
+2025-09-04 18:40:10,555 [INFO] __main__ - Generated 5000 events total
+2025-09-04 18:40:10,555 [INFO] __main__ - Saving users.csv (960401 rows) and events.csv (5000 rows) into data/raw/
+2025-09-04 18:42:01,103 [INFO] __main__ - Data sent to DB on OVH Cloud (location Gravelines)
+2025-09-04 18:42:04,692 [INFO] __main__ - Data stored locally
+2025-09-04 18:42:04,699 [INFO] __main__ - Files: data/raw/users.csv, data/raw/events.csv

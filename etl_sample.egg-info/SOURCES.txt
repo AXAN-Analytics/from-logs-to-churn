@@ -1,0 +1,12 @@
+README.md
+setup.py
+etl/GenerateData.py
+etl/__init__.py
+etl/stores/__init__.py
+etl/stores/duckdb_store.py
+etl_sample.egg-info/PKG-INFO
+etl_sample.egg-info/SOURCES.txt
+etl_sample.egg-info/dependency_links.txt
+etl_sample.egg-info/entry_points.txt
+etl_sample.egg-info/requires.txt
+etl_sample.egg-info/top_level.txt
