@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fltc
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: fltc-etl-hourly
+  namespace: fltc
+spec:
+  schedule: "0 * * * *"   
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 3600
+      template:
+        metadata: { labels: { app: fltc-etl } }
+        spec:
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            fsGroup: 10001
+          containers:
+            - name: etl
+              image: ghcr.io/axan-analytics/from-logs-to-churn:latest
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: CONFIG_PATH
+                  value: /app/config/postgres.json
+              resources:
+                requests: { cpu: "200m", memory: "256Mi" }
+                limits:   { cpu: "1",    memory: "1Gi"   }
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities: { drop: ["ALL"] }
+                seccompProfile: { type: RuntimeDefault }
+              volumeMounts:
+                - name: pg-config
+                  mountPath: /app/config
+                  readOnly: true
+          volumes:
+            - name: pg-config
+              secret:
+                secretName: fltc-postgres-json
