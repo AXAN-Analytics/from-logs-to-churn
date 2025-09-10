@@ -9,22 +9,46 @@ import pathlib
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 
-CONFIG_PATH = pathlib.Path.home() / ".config" / "OVH-cloud" / "from-logs-to-churn" / "postgres.json"
 
-def load_pg_config(path: pathlib.Path = CONFIG_PATH) -> dict:
-    with path.open() as f:
-        return json.load(f)
+DEFAULT_CFG = pathlib.Path.home() / ".config" / "OVH-cloud" / "from-logs-to-churn" / "postgres.json"
 
-def connect_from_config(path: pathlib.Path = CONFIG_PATH) -> Engine:
-    cfg = load_pg_config(path)
+class DataBase:
 
-    url = (
-        f"postgresql+psycopg2://{cfg['user']}:{cfg['password']}"
-        f"@{cfg['host']}:{cfg['port']}/{cfg['database']}?sslmode={cfg.get('sslmode','require')}"
-    )
+    def aux_init__load_pg_config(self,path: pathlib.Path) -> dict:
+        with path.open() as f:
+            return json.load(f)
+
+    def aux_init__connect_config(self,path:pathlib.Path)-> Engine:
+        cfg = self.aux_init__load_pg_config(path)
+
+        url = (
+            f"postgresql+psycopg2://{cfg['user']}:{cfg['password']}"
+            f"@{cfg['host']}:{cfg['port']}/{cfg['database']}?sslmode={cfg.get('sslmode','require')}"
+        )
 
 
-    return create_engine(url, pool_pre_ping=True, pool_size=5, max_overflow=5)
+        return create_engine(url, pool_pre_ping=True, pool_size=5, max_overflow=5)
+
+
+
+    def aux_init__find_config_files(self) -> str:
+
+        candidates = []
+        if os.getenv("CONFIG_PATH"):
+            candidates.append(pathlib.Path(os.getenv("CONFIG_PATH")))
+        candidates.append(pathlib.Path("/app/config/postgres.json"))   # in-container path
+        candidates.append(DEFAULT_CFG)
+
+        for p in candidates:
+            if p.is_file():
+                return p
+        raise FileNotFoundError("No postgres.json found. Set CONFIG_PATH or mount /app/config/postgres.json")
+
+        
+
+    def __init__(self):
+        path_configuration_file=self.aux_init__find_config_files()
+        self.engine=self.aux_init__connect_config(path=path_configuration_file)
 
 
 
