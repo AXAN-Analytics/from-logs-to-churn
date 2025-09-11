@@ -137,3 +137,24 @@ def upsert_users(engine: Engine, df: pd.DataFrame) -> None:
                 device      = EXCLUDED.device;
         """))
 
+def ensure_user_state_columns(engine: Engine):
+    with con.connect() as cur:
+        cur.exec_driver_sql("""
+        DO $$
+        BEGIN
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                WHERE table_name='users' AND column_name='is_active') THEN
+                ALTER TABLE users ADD COLUMN is_active boolean DEFAULT true;
+                UPDATE users SET is_active = true WHERE is_active IS NULL;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                WHERE table_name='users' AND column_name='last_active_ts') THEN
+                ALTER TABLE users ADD COLUMN last_active_ts timestamptz NULL;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                WHERE table_name='users' AND column_name='churned_at') THEN
+                ALTER TABLE users ADD COLUMN churned_at timestamptz NULL;
+            END IF;
+        END$$;
+        """)
+        cur.commit()
