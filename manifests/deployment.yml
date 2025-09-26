@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fltc-server
+  namespace: fltc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fltc-server
+  template:
+    metadata:
+      labels:
+        app: fltc-server
+    spec:
+      imagePullSecrets:
+        - name: ghcr-cred         # remove if image is public
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: server
+          image: ghcr.io/axan-analytics/from-logs-to-churn:latest   # your built image
+          imagePullPolicy: IfNotPresent
+          # If your image's CMD already starts uvicorn, you can remove command/args below.
+          command: ["uvicorn"]
+          args: ["server:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_NAME
+              value: "dummy-site"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8000 }
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8000 }
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "512Mi" }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+            seccompProfile: { type: RuntimeDefault }

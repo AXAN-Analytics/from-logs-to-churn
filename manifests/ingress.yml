@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fltc-server
+  namespace: fltc
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: axan-analytics.com   # point DNS to the ingress LB IP
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fltc-server
+                port:
+                  number: 80
