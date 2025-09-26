@@ -9,22 +9,46 @@ import pathlib
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 
-CONFIG_PATH = pathlib.Path.home() / ".config" / "OVH-cloud" / "from-logs-to-churn" / "postgres.json"
 
-def load_pg_config(path: pathlib.Path = CONFIG_PATH) -> dict:
-    with path.open() as f:
-        return json.load(f)
+DEFAULT_CFG = pathlib.Path.home() / ".config" / "OVH-cloud" / "from-logs-to-churn" / "postgres.json"
 
-def connect_from_config(path: pathlib.Path = CONFIG_PATH) -> Engine:
-    cfg = load_pg_config(path)
+class DataBase:
 
-    url = (
-        f"postgresql+psycopg2://{cfg['user']}:{cfg['password']}"
-        f"@{cfg['host']}:{cfg['port']}/{cfg['database']}?sslmode={cfg.get('sslmode','require')}"
-    )
+    def aux_init__load_pg_config(self,path: pathlib.Path) -> dict:
+        with path.open() as f:
+            return json.load(f)
+
+    def aux_init__connect_config(self,path:pathlib.Path)-> Engine:
+        cfg = self.aux_init__load_pg_config(path)
+
+        url = (
+            f"postgresql+psycopg2://{cfg['user']}:{cfg['password']}"
+            f"@{cfg['host']}:{cfg['port']}/{cfg['database']}?sslmode={cfg.get('sslmode','require')}"
+        )
 
 
-    return create_engine(url, pool_pre_ping=True, pool_size=5, max_overflow=5)
+        return create_engine(url, pool_pre_ping=True, pool_size=5, max_overflow=5)
+
+
+
+    def aux_init__find_config_files(self) -> str:
+
+        candidates = []
+        if os.getenv("CONFIG_PATH"):
+            candidates.append(pathlib.Path(os.getenv("CONFIG_PATH")))
+        candidates.append(pathlib.Path("/app/config/postgres.json"))   # in-container path
+        candidates.append(DEFAULT_CFG)
+
+        for p in candidates:
+            if p.is_file():
+                return p
+        raise FileNotFoundError("No postgres.json found. Set CONFIG_PATH or mount /app/config/postgres.json")
+
+        
+
+    def __init__(self):
+        path_configuration_file=self.aux_init__find_config_files()
+        self.engine=self.aux_init__connect_config(path=path_configuration_file)
 
 
 
@@ -113,3 +137,41 @@ def upsert_users(engine: Engine, df: pd.DataFrame) -> None:
                 device      = EXCLUDED.device;
         """))
 
+def ensure_user_state_columns(engine: Engine):
+    with engine.connect() as cur:
+        cur.exec_driver_sql("""
+        DO $$
+        BEGIN
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                WHERE table_name='users' AND column_name='is_active') THEN
+                ALTER TABLE users ADD COLUMN is_active boolean DEFAULT true;
+                UPDATE users SET is_active = true WHERE is_active IS NULL;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                WHERE table_name='users' AND column_name='last_active_ts') THEN
+                ALTER TABLE users ADD COLUMN last_active_ts timestamptz NULL;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                WHERE table_name='users' AND column_name='churned_at') THEN
+                ALTER TABLE users ADD COLUMN churned_at timestamptz NULL;
+            END IF;
+        END$$;
+        """)
+        cur.commit()
+
+
+
+
+if __name__=='__main__':
+
+    db=DataBase()
+
+    q="""
+        SELECT *
+        FROM events
+        WHERE DATE(ts) > '2025-08-15'
+        ORDER BY ts DESC;
+
+
+    """
+    df= pd.read_sql(q, db.engine)
