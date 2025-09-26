@@ -138,7 +138,7 @@ def upsert_users(engine: Engine, df: pd.DataFrame) -> None:
         """))
 
 def ensure_user_state_columns(engine: Engine):
-    with con.connect() as cur:
+    with engine.connect() as cur:
         cur.exec_driver_sql("""
         DO $$
         BEGIN
@@ -158,3 +158,20 @@ def ensure_user_state_columns(engine: Engine):
         END$$;
         """)
         cur.commit()
+
+
+
+
+if __name__=='__main__':
+
+    db=DataBase()
+
+    q="""
+        SELECT *
+        FROM events
+        WHERE DATE(ts) > '2025-08-15'
+        ORDER BY ts DESC;
+
+
+    """
+    df= pd.read_sql(q, db.engine)

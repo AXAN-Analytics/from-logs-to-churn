@@ -34,6 +34,9 @@ class Daily_Activity_Update:
         ensure_user_state_columns(self.engine)
 
 
+        self.init_real_values()
+
+
 
 
     def init_real_values(self):
@@ -127,8 +130,8 @@ class Daily_Activity_Update:
 
     def generate_events_last_6h(self):
        
-        window_start = self.now - timedelta(hours=H)
-        active = self.get_active_users(self.engine)
+        window_start = self.now - timedelta(hours=6)
+        active = self.get_active_users()
         n_active = len(active)
 
         target = max(0, int(round(self.real_event_daily * self.daily_frequency / 24.0)))
@@ -168,7 +171,8 @@ class Daily_Activity_Update:
 
         events = pd.DataFrame(rows, columns=["event_id","user_id","ts","event_type","session_id"])
 
-
+        import pdb
+        pdb.set_trace()
 
         # update last_active_ts for users that appeared
         if not events.empty:
@@ -206,7 +210,8 @@ if __name__=='__main__':
     it=0
     while t <= now_ref:
         it+=1
-        run_last_6h(X_DAILY, Z_PER_6H, now=t)
+        daily_activity_update= Daily_Activity_Update(now=t)
+        daily_activity_update.generate_events_last_6h()
         print(f'Data at {t} generated')
         t += timedelta(hours=6)
 
