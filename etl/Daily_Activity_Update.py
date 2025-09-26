@@ -171,9 +171,6 @@ class Daily_Activity_Update:
 
         events = pd.DataFrame(rows, columns=["event_id","user_id","ts","event_type","session_id"])
 
-        import pdb
-        pdb.set_trace()
-
         # update last_active_ts for users that appeared
         if not events.empty:
             seen = tuple(events["user_id"].unique())
