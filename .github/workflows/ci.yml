@@ -1,7 +1,7 @@
 name: build-push
 on:
   push:
-    branches: [ "main" ] 
+    branches: [ "main", "features/**" ] 
 
 permissions:
   contents: read

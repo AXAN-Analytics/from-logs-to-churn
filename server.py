@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Optional, List
 
+from fastapi import Response
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
@@ -60,7 +61,9 @@ def product(pid: str):
 def login():
     return PAGE_TEMPLATE.format(title="Login", body="Pretend login page.", path="/login")
 
-
+@app.get("/favicon.ico")
+def favicon():
+    return Response(status_code=204)
 class EventIn(BaseModel):
         event_id: str
         session_id: str
